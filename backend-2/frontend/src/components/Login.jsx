@@ -159,8 +159,7 @@ const Login = ({ onLogin }) => {
           {isLoginMode && (
             <div className="mt-4 text-center">
               <div className="text-sm text-gray-500">
-                <p>Demo Admin Credentials:</p>
-                <p className="font-mono">ayush.bhrg@gmail.com / ayushtri</p>
+  
               </div>
             </div>
           )}
