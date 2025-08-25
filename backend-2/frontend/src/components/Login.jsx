@@ -23,13 +23,16 @@ const Login = ({ onLogin }) => {
 
     try {
       const endpoint = isLoginMode ? "/api/auth/login" : "/api/auth/request";
-      const response = await fetch(`http://localhost:5000${endpoint}`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
+      const response = await fetch(
+        `https://adminmobile-gqli.onrender.com${endpoint}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
 
       const data = await response.json();
 

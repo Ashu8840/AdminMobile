@@ -14,11 +14,14 @@ const RequestsTab = ({ user }) => {
   const fetchRequests = async () => {
     try {
       const token = localStorage.getItem("token");
-      const response = await fetch("http://localhost:5000/api/admin/requests", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await fetch(
+        "https://adminmobile-gqli.onrender.com/api/admin/requests",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
 
       if (response.ok) {
         const data = await response.json();
@@ -38,7 +41,7 @@ const RequestsTab = ({ user }) => {
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        `http://localhost:5000/api/admin/approve/${userId}`,
+        `https://adminmobile-gqli.onrender.com/api/admin/approve/${userId}`,
         {
           method: "PATCH",
           headers: {
@@ -63,7 +66,7 @@ const RequestsTab = ({ user }) => {
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        `http://localhost:5000/api/admin/reject/${userId}`,
+        `https://adminmobile-gqli.onrender.com/api/admin/reject/${userId}`,
         {
           method: "DELETE",
           headers: {

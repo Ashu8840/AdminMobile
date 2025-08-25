@@ -16,11 +16,14 @@ const MoviesTab = ({ user }) => {
   const fetchMovies = async () => {
     try {
       const token = localStorage.getItem("token");
-      const response = await fetch("http://localhost:5000/api/movies", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await fetch(
+        "https://adminmobile-gqli.onrender.com/api/movies",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
 
       if (response.ok) {
         const data = await response.json();
@@ -61,7 +64,7 @@ const MoviesTab = ({ user }) => {
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        `http://localhost:5000/api/movies/${movieId}`,
+        `https://adminmobile-gqli.onrender.com/api/movies/${movieId}`,
         {
           method: "DELETE",
           headers: {

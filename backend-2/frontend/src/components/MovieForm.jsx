@@ -51,8 +51,8 @@ const MovieForm = ({ movie, onMovieAdded, onMovieUpdated, onClose }) => {
       }
 
       const url = movie
-        ? `http://localhost:5000/api/movies/${movie._id}`
-        : "http://localhost:5000/api/movies";
+        ? `https://adminmobile-gqli.onrender.com/api/movies/${movie._id}`
+        : "https://adminmobile-gqli.onrender.com/api/movies";
 
       const method = movie ? "PUT" : "POST";
 
