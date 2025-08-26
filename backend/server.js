@@ -253,10 +253,14 @@ app.post("/api/auth/login", async (req, res) => {
 app.get("/api/movies", async (req, res) => {
   try {
     const response = await axios.get(process.env.MOVIE_API_URL);
-    res.json(response.data);
+    // Handle different response structures
+    const movies = response.data.movies || response.data || [];
+    res.json({ movies });
   } catch (error) {
     console.error("Error fetching movies:", error);
-    res.status(500).json({ message: "Error fetching movies" });
+    res
+      .status(500)
+      .json({ message: "Error fetching movies", error: error.message });
   }
 });
 
@@ -264,7 +268,8 @@ app.get("/api/movies/:id", async (req, res) => {
   try {
     const { id } = req.params;
     const response = await axios.get(process.env.MOVIE_API_URL);
-    const movie = response.data.movies.find((m) => m._id === id);
+    const movies = response.data.movies || response.data || [];
+    const movie = movies.find((m) => m._id === id);
 
     if (!movie) {
       return res.status(404).json({ message: "Movie not found" });
@@ -273,7 +278,9 @@ app.get("/api/movies/:id", async (req, res) => {
     res.json(movie);
   } catch (error) {
     console.error("Error fetching movie:", error);
-    res.status(500).json({ message: "Error fetching movie" });
+    res
+      .status(500)
+      .json({ message: "Error fetching movie", error: error.message });
   }
 });
 

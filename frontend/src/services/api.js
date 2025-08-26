@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_BASE_URL = "http://localhost:8000/api";
+const API_BASE_URL = "https://adminmobile-1.onrender.com/api";
 
 const api = axios.create({
   baseURL: API_BASE_URL,
@@ -45,13 +45,45 @@ export const authAPI = {
 
 // Movies API
 export const moviesAPI = {
-  getMovies: () => api.get("/movies"),
-  getMovie: (id) => api.get(`/movies/${id}`),
+  getMovies: () =>
+    axios
+      .get("https://adminmobile-gqli.onrender.com/free")
+      .then((res) => {
+        const movies = res.data.movies || res.data || [];
+        return { data: { movies } };
+      })
+      .catch((error) => {
+        console.error("Error fetching movies:", error);
+        return { data: { movies: [] } };
+      }),
+  getMovie: (id) =>
+    axios
+      .get("https://adminmobile-gqli.onrender.com/free")
+      .then((res) => {
+        const movies = res.data.movies || res.data || [];
+        const movie = movies.find((m) => m._id === id);
+        return { data: movie };
+      })
+      .catch((error) => {
+        console.error("Error fetching movie:", error);
+        return { data: null };
+      }),
 };
 
 // Movie Service (for backwards compatibility)
 export const movieService = {
-  getMovieById: (id) => api.get(`/movies/${id}`),
+  getMovieById: (id) =>
+    axios
+      .get("https://adminmobile-gqli.onrender.com/free")
+      .then((res) => {
+        const movies = res.data.movies || res.data || [];
+        const movie = movies.find((m) => m._id === id);
+        return { data: movie };
+      })
+      .catch((error) => {
+        console.error("Error fetching movie:", error);
+        return { data: null };
+      }),
   getMovieReviews: (movieId) => {
     if (!movieId) {
       return Promise.resolve({ data: [] });

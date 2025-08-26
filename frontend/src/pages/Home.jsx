@@ -32,7 +32,9 @@ const Home = () => {
     queryKey: ["user-stats"],
     queryFn: async () => {
       try {
-        const response = await fetch("http://localhost:8000/api/users/count");
+        const response = await fetch(
+          "https://adminmobile-1.onrender.com/api/users/count"
+        );
         if (response.ok) {
           return await response.json();
         }

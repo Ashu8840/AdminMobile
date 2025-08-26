@@ -19,7 +19,7 @@ const DashboardHome = () => {
     try {
       const token = localStorage.getItem("adminToken");
       const response = await fetch(
-        "http://localhost:8000/api/admin/analytics",
+        "https://adminmobile-1.onrender.com/api/admin/analytics",
         {
           headers: {
             Authorization: `Bearer ${token}`,
